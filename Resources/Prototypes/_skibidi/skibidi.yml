@@ -1,0 +1,1033 @@
+﻿- type: entity
+  parent: BaseMob
+  id: BaseToiletChassis
+  name: cyborg
+  description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
+  save: false
+  abstract: true
+  components:
+  - type: CombatMode
+  - type: MovementIgnoreGravity
+  - type: NoSlip
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+    securityLevel: maxSecurity
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.3
+        density: 10
+        mask:
+        - LargeMobMask
+        layer:
+        - MobLayer
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 4.5
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: MobThresholds
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: Hands
+    showInHands: false
+  - type: ZombieImmune
+  - type: Repairable
+    doAfterDelay: 10
+    allowSelfRepair: false
+  - type: BorgChassis
+    layoutId: Borg
+  - type: NameIdentifier
+    group: Silicon
+  - type: ContainerContainer
+    containers:
+      borg_brain: !type:ContainerSlot { }
+      cell_slot: !type:ContainerSlot { }
+      borg_module: !type:Container { }
+      part-container: !type:Container
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: PowerCellDraw
+    drawRate: 0.6
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+  - type: Body
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+  - type: TypingIndicator
+    proto: alien
+  - type: Speech
+    speechVerb: LargeMob
+  - type: UnblockableSpeech
+  - type: Construction
+    graph: Cyborg
+    containers:
+    - part-container
+    - cell_slot
+  - type: Flashable
+  - type: Damageable
+    damageContainer: Silicon
+  - type: HandheldLight
+    toggleOnInteract: false
+    wattage: 0.2
+    blinkingBehaviourId: blinking
+    radiatingBehaviourId: radiating
+  - type: LightBehaviour
+    behaviours:
+    - !type:FadeBehaviour
+      id: radiating
+      maxDuration: 2.0
+      startValue: 3.0
+      endValue: 2.0
+      isLooped: true
+      reverseWhenFinished: true
+    - !type:PulseBehaviour
+      id: blinking
+      interpolate: Nearest
+      maxDuration: 1.0
+      minValue: 0.1
+      maxValue: 2.0
+      isLooped: true
+  - type: ToggleableLightVisuals
+  - type: PointLight
+    enabled: false
+    mask: /Textures/Effects/LightMasks/cone.png
+    autoRot: true
+    radius: 4
+    netsync: false
+  - type: Pullable
+  - type: Puller
+    needsHands: false
+  - type: Tag
+    tags:
+    - ShoesRequiredStepTriggerImmune
+    - DoorBumpOpener
+    - CanPilot
+  - type: Emoting
+  - type: TTS # Corvax-TTS
+    voice: TrainingRobot
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Scibidi
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - Scibidi
+  - type: NpcFactionMember
+    factions:
+      - Syndicate
+
+- type: entity
+  parent: BaseMob
+  id: BaseMenChassis
+  name: cyborg
+  description: A man-machine hybrid that assists in station activity. They love being asked to state their laws over and over.
+  save: false
+  abstract: true
+  components:
+  - type: FootstepModifier
+    footstepSoundCollection:
+      path: /Audio/Mecha/sound_mecha_powerloader_step.ogg
+  - type: CombatMode
+  - type: MovementIgnoreGravity
+  - type: NoSlip
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 10
+        mask:
+        - LargeMobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds
+    stateAlertDict:
+      Alive: BorgHealth
+      Critical: BorgCrit
+      Dead: BorgDead
+    showOverlays: false
+    allowRevives: true
+  - type: WiresPanel
+  - type: WiresPanelSecurity
+    securityLevel: maxSecurity
+  - type: MovementSpeedModifier
+    baseWalkSpeed : 2.5
+    baseSprintSpeed : 4.5
+  - type: MobState
+    allowedStates:
+      - Alive
+      - Dead
+  - type: HealthExaminable
+    examinableTypes:
+      - Blunt
+      - Slash
+      - Piercing
+      - Heat
+      - Shock
+    locPrefix: silicon
+  - type: ZombieImmune
+  - type: Repairable
+    doAfterDelay: 10
+    allowSelfRepair: false
+  - type: BorgChassis
+  - type: NameIdentifier
+    group: GenericNumber
+  - type: ContainerContainer
+    containers:
+      borg_brain: !type:ContainerSlot { }
+      cell_slot: !type:ContainerSlot { }
+      borg_module: !type:Container { }
+      part-container: !type:Container
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+    fitsInCharger: true
+  - type: PowerCellDraw
+    drawRate: 0.6
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+  - type: InventorySlots
+  - type: Inventory
+    templateId: mens
+  - type: Body
+    prototype: Human
+    requiredLegs: 2
+  - type: Hands
+  - type: StatusEffects
+    allowed:
+    - Stun
+    - KnockedDown
+    - SlowedDown
+  - type: TypingIndicator
+    proto: robot
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
+  - type: UnblockableSpeech
+  - type: Construction
+    graph: Cyborg
+    containers:
+    - part-container
+    - cell_slot
+  - type: Flashable
+  - type: Damageable
+    damageContainer: Silicon
+  - type: Pullable
+  - type: Puller
+    needsHands: false
+  - type: Tag
+    tags:
+    - ShoesRequiredStepTriggerImmune
+    - DoorBumpOpener
+    - CanPilot
+  - type: Emoting
+  - type: TTS # Corvax-TTS
+    voice: TrainingRobot
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - CameraMan
+  - type: IntrinsicRadioTransmitter
+    channels:
+    - CameraMan
+  - type: NpcFactionMember
+    factions:
+      - NanoTrasen
+  - type: PassiveDamage 
+    allowedStates:
+    - Alive
+    damageCap: 500
+    damage:
+      types:
+        Shock: -1000
+
+- type: entity
+  id: NukeToilet
+  parent: BaseToiletChassis
+  name: Скибиди оперативник
+  description: Скибиди трататататат доп доп
+  components:
+    - type: PointLight
+      color: "#dd200b"
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: /Textures/_scibidi/nuke_toilet.rsi
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: nuke_toilet
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: nuke_toilet
+        Dead:
+          Base: nuke_toilet_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        750: Dead      
+    - type: Construction
+      node: syndicateassault
+    - type: NpcFactionMember
+      factions:
+        - Syndicate
+    - type: SiliconLawProvider
+      laws: SyndicateStatic
+    - type: ShowSyndicateIcons
+    - type: MovementAlwaysTouching
+    - type: NukeOperative
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+        borg_module:
+          - BorgModuleL6Skibi
+          - BorgModuleOperative
+          - SuicideModule
+    - type: GhostRole
+      allowMovement: true
+      makeSentient: true
+      name: Скибиди Оперативник
+      description: Туалет оперативника - именно вы те кто прейдёт и поможет во временна туалетного кризиса скибиди. Уничтожьте неверных доп доп.
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  id: BaseToilet
+  parent: BaseToiletChassis
+  name: Скибиди туалет
+  description: Чем гуще лес.. скибиди доп доп ес ес...
+  components:
+    - type: PointLight
+      color: "#ededed"
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: /Textures/_scibidi/base_toilet.rsi
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: base_toilet
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: base_toilet
+        Dead:
+          Base: base_toilet_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        250: Dead 
+    - type: BorgChassis
+      maxModules: 3
+      moduleWhitelist:
+        tags:
+          - BorgModuleGeneric
+          - BorgModuleSyndicate
+          - BorgModuleSyndicateAssault
+    - type: Construction
+      node: syndicateassault
+    - type: ShowSyndicateIcons
+    - type: MovementAlwaysTouching
+    - type: NukeOperative
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+        borg_module:
+          - BorgModuleBase
+    - type: GhostRole
+      allowMovement: true
+      makeSentient: true
+      name: Скибиди Туалет
+      description: Вы базованый туалет после продолжительного воздействия редспейса, выполняйте приказы Скибиди Титана и доп доп неверных.
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  id: EngToilet
+  parent: BaseToiletChassis
+  name: Скибиди Инженер
+  description: без труда... скибиди вапапа...
+  components:
+    - type: PointLight
+      color: "#cf9613"
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: /Textures/_scibidi/engener.rsi
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: eng_toilet
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: eng_toilet
+        Dead:
+          Base: base_toilet_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        450: Dead 
+    - type: BorgChassis
+      maxModules: 3
+      moduleWhitelist:
+        tags:
+          - BorgModuleGeneric
+          - BorgModuleEngineering
+    - type: Construction
+      node: syndicateassault
+    - type: ShowSyndicateIcons
+    - type: MovementAlwaysTouching
+    - type: NukeOperative
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+        borg_module:
+          - BorgModuleEng
+    - type: GhostRole
+      allowMovement: true
+      makeSentient: true
+      name: Скибиди инженер
+      description: О ужас, туалеты со встроеными инструментами... видно что "Skebede Lab" постаралось на славу, выполняйте приказы Скибиди Титана и доп доп неверных.
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  id: TitanToilet
+  parent: BaseToiletChassis
+  name: Скибиди Титан
+  description: '"Путь был выбран и уж поздно, что-то в жизни мне менять. 
+  Все достойно, мирно, складно, от себя лишь не сбежать. 
+  Не вернуть того, что было, те счастливые года.  
+  Понял я, наверно, поздно, что свернул я не туда…" ⓒSODAX'  
+  components:
+    - type: PointLight
+      color: "#ff00f2"
+    - type: Fixtures
+      fixtures:
+        fix1:
+          shape:
+            !type:PhysShapeCircle
+            radius: 0.70
+          density: 18000
+          mask:
+          - MobMask
+          layer:
+          - MobLayer
+    - type: Sprite
+      scale: 2.4, 2.4
+      drawdepth: Mobs
+      sprite: /Textures/_scibidi/titan.rsi
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: titan_toilet
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: titan_toilet
+        Dead:
+          Base: base_toilet_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        1250: Dead 
+    - type: BorgChassis
+      maxModules: 3
+      moduleWhitelist:
+        tags:
+          - BorgModuleGeneric
+    - type: Construction
+      node: syndicateassault
+    - type: ShowSyndicateIcons
+    - type: MovementAlwaysTouching
+    - type: NukeOperative
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+        borg_module:
+          - BorgModuleTitan
+
+- type: entity
+  name: Камерамэн
+  id: Cameraman
+  parent: BaseMenChassis
+  description: Суть в том что титаны бы нечего не смогли без нас, мы были незаменными, мы спасали титанов, мы уничтожали паразитов что были на них, работали в команде... и убивали миллионы.
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: /Textures/_scibidi/camera.rsi
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: camera_man
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: camera_man
+        Dead:
+          Base: camera_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        200: Dead 
+    - type: Construction
+      node: syndicateassault
+    - type: MovementAlwaysTouching
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+    - type: GhostRole
+      allowMovement: true
+      makeSentient: true
+      name: Камерамэн
+      description: Пришли тяжелые временна, ваще время проявить себя и уничтожить как можно больше Скибиди туалетов....
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  name: ТВмэн
+  id: Tvman
+  parent: BaseMenChassis
+  description: Нынче твмэны уже не те, головы у них больше не летают...
+  components:
+    - type: Sprite
+      drawdepth: Mobs
+      sprite: /Textures/_scibidi/tvman.rsi
+      layers:
+        - map: ["enum.DamageStateVisualLayers.Base"]
+          state: tvman
+    - type: DamageStateVisuals
+      states:
+        Alive:
+          Base: tvman
+        Dead:
+          Base: tvman_dead
+    - type: MobThresholds
+      thresholds:
+        0: Alive
+        250: Dead 
+    - type: Construction
+      node: syndicateassault
+    - type: MovementAlwaysTouching
+    - type: ContainerFill
+      containers:
+        borg_brain:
+          - MMIFilled
+    - type: GhostRole
+      allowMovement: true
+      makeSentient: true
+      name: Твмэн
+      description: Пришли тяжелые временна, ваще время проявить себя и уничтожить как можно больше Скибиди туалетов....
+    - type: GhostTakeoverAvailable
+
+- type: entity
+  id: BorgModuleTitan
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  components:
+    - type: Sprite
+      layers:
+        - state: syndicate
+        - state: icon-tools
+    - type: ItemBorgModule
+      items:
+        - BaseWeaponBatteryTitan
+        - ToileteKys
+        - SyndicateJawsOfLife
+        - TitanSing
+
+- type: entity
+  id: BorgModuleBase
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  components:
+    - type: Sprite
+      layers:
+        - state: syndicate
+        - state: icon-tools
+    - type: ItemBorgModule
+      items:
+        - ToileteKys
+        - Crowbar
+        - BaseSing
+
+- type: entity
+  id: SuicideModule
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  components:
+    - type: Sprite
+      sprite: Structures/Wallmounts/signs.rsi
+      state: explosives
+    - type: ItemBorgModule
+      items:
+        - C4
+        - C4
+        - C4
+
+- type: entity
+  id: BorgModuleL6Skibi
+  parent: [ BaseBorgModuleSyndicateAssault, BaseProviderBorgModule ]
+  name: L6C ROW cyborg module
+  description: A module that comes with a L6C.
+  components:
+    - type: Sprite
+      layers:
+        - state: syndicate
+        - state: icon-tools
+    - type: ItemBorgModule
+      items:
+        - WeaponLightMachineGunL6CSkibi
+        - PinpointerSyndicateNuclear
+
+- type: entity
+  id: BorgModuleEng
+  parent: [ BaseBorgModuleSyndicate, BaseProviderBorgModule ]
+  components:
+    - type: Sprite
+      sprite: Objects/Weapons/Melee/sledgehammer.rsi
+      state: icon
+    - type: ItemBorgModule
+      items:
+        - Omnitool
+        - WelderExperimental
+        - SheetSteelLingering0
+        - SheetGlassLingering0
+        - PartRodMetalLingering0
+        - Pickaxe
+
+- type: radioChannel
+  id: CameraMan
+  name: Камерамэн
+  keycode: "л"
+  frequency: 6925
+  color: "#424242"
+  longRange: true
+
+- type: radioChannel
+  id: Scibidi
+  name: Скибиди
+  keycode: "з"
+  frequency: 6926
+  color: "#852720"
+  longRange: true
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyCameraMan
+  name: Ключ шифрования камерамэнов
+  description: Ключ шифрования для доступа к каналу камерамэнов
+  components:
+  - type: EncryptionKey
+    channels:
+    - CameraMan
+    defaultChannel: CameraMan
+  - type: Sprite
+    sprite: Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_gray
+
+- type: entity
+  parent: EncryptionKey
+  id: EncryptionKeyScibidi
+  name: Ключ шифрования скибиди туалетов
+  description: Ключ шифрования для доступа к каналу скибиди туалетов
+  components:
+  - type: EncryptionKey
+    channels:
+    - Scibidi
+    defaultChannel: Scibidi
+  - type: Sprite
+    sprite: Objects/Devices/encryption_keys.rsi
+    layers:
+    - state: crypt_gray
+
+- type: entity
+  name: Скибиди клыки
+  parent: BaseItem
+  id: ToileteKys
+  description: Откуда у туалетов такие острые зубы?
+  components:
+  - type: Sharp
+  - type: Tag
+    tags:
+    - Machete
+  - type: Sprite
+    sprite: Objects/Weapons/Melee/machete.rsi
+    state: icon
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 25
+    soundHit:
+        path: /Audio/Weapons/bladeslice.ogg
+  - type: Item
+    size: Normal
+    sprite: Objects/Weapons/Melee/machete.rsi
+
+- type: entity
+  name: Скибиди пулемет
+  id: WeaponLightMachineGunL6CSkibi
+  parent: BaseItem
+  description: Особое огнестрельное орудие спец скибиди войск.
+  components:
+    - type: Gun
+      minAngle: 4
+      maxAngle: 15
+      angleIncrease: 4
+      angleDecay: 16
+      fireRate: 8
+      selectedMode: FullAuto
+      availableModes:
+        - FullAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+      soundEmpty:
+        path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+      layers:
+        - state: base
+          map: [ "enum.GunVisualLayers.Base" ]
+        - state: mag-3
+          map: [ "enum.GunVisualLayers.Mag" ]
+    - type: Item
+      size: Huge
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+    - type: ProjectileBatteryAmmoProvider
+      proto: CartridgeLightRifle
+      fireCost: 100
+    - type: Battery
+      maxCharge: 10000
+      startingCharge: 10000
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 75
+    - type: AmmoCounter
+
+- type: entity
+  name: Пушка скибиди титана
+  parent: BaseWeaponLauncher
+  id: BaseWeaponBatteryTitan
+  description: Вот такой ствол по мне, я бы его скибиди доп доп.
+  components:
+    - type: Item
+      size: Normal  # Intentionally larger than other pistols
+    - type: Sprite
+      sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+      layers:
+      - state: base
+        map: ["enum.GunVisualLayers.Base"]
+      - state: mag-unshaded-4
+        map: ["enum.GunVisualLayers.MagUnshaded"]
+        shader: unshaded
+    - type: Clothing
+      sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
+    - type: Gun
+      fireRate: 6
+      selectedMode: FullAuto
+      availableModes:
+      - FullAuto
+      soundGunshot:
+        path: /Audio/Weapons/Guns/Gunshots/mateba.ogg
+    - type: MagazineVisuals
+      magState: mag
+      steps: 5
+      zeroVisible: true
+    - type: Appearance
+    - type: ProjectileBatteryAmmoProvider
+      proto: CartridgeRocketSlow
+      fireCost: 100
+    - type: Battery
+      maxCharge: 3000
+      startingCharge: 3000
+    - type: BatterySelfRecharger
+      autoRecharge: true
+      autoRechargeRate: 20
+    - type: ContainerContainer
+      containers:
+        ballistic-ammo: !type:Container
+
+- type: entity
+  name: MVS-лазер
+  parent: BaseWeaponBattery
+  id: WeaponLaseMan
+  description: Лазерное оружие созданное специально для борьби со Скибиди туалетами, так же благодаря универсальной калибровке опасен только для туалетов.
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: Objects/Weapons/Guns/Battery/laser_cannon.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+    fireRate: 1.2
+  - type: HitscanBatteryAmmoProvider
+    proto: MvsLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRecharge: true
+    autoRechargeRate: 40
+
+- type: hitscan
+  id: MvsLaser
+  damage:
+    types:
+      Shock: 50
+  muzzleFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: muzzle_xray
+  travelFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: xray
+  impactFlash:
+    sprite: Objects/Weapons/Guns/Projectiles/projectiles.rsi
+    state: impact_xray
+
+- type: entity
+  name: MTR-пулемёт
+  parent: BaseItem
+  id: WeaponMtr
+  description: Огнестрельное оружие созданное специально для борьби со Скибиди туалетами, так же благодаря универсальным патронам опасен только для туалетов, использует особые крупнокалиберные патроны .69
+  components:
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+  - type: Item
+    size: Huge
+  - type: Gun
+    minAngle: 10
+    maxAngle: 15
+    angleIncrease: 4
+    angleDecay: 16
+    fireRate: 8
+    selectedMode: FullAuto
+    availableModes:
+      - FullAuto
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/lmg.ogg
+    soundEmpty:
+      path: /Audio/Weapons/Guns/Empty/lmg_empty.ogg
+  - type: ChamberMagazineAmmoProvider
+    boltClosed: null
+    soundRack:
+      path: /Audio/Weapons/Guns/Cock/lmg_cock.ogg
+  - type: AmmoCounter
+  - type: ItemSlots
+    slots:
+      gun_magazine:
+        name: Magazine
+        startingItem: MagazineLightRifleBox2
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectSound: /Audio/Weapons/Guns/MagOut/batrifle_magout.ogg
+        priority: 2
+        whitelist:
+          tags:
+            - MagazineLightRifleBox2
+      gun_chamber:
+        name: Chamber
+        startingItem: CartridgeLightRifle2
+        priority: 1
+        whitelist:
+          tags:
+            - CartridgeLightRifle2
+  - type: ContainerContainer
+    containers:
+      gun_magazine: !type:ContainerSlot
+      gun_chamber: !type:ContainerSlot
+
+- type: entity
+  id: MagazineLightRifleBox2
+  name: "MTR магазин (.69 крупнокалиберный)"
+  parent: BaseMagazineLightRifle
+  components:
+  - type: Tag
+    tags:
+      - MagazineLightRifleBox2
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifle2
+    capacity: 69
+  - type: Item
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Magazine/LightRifle/light_rifle_box.rsi
+  - type: MagazineVisuals
+    magState: mag
+    steps: 8
+    zeroVisible: false
+
+- type: entity
+  id: CartridgeLightRifle2
+  name: Патрон (.69 крупнокалиберный)
+  parent: BaseCartridgeLightRifle
+  components:
+  - type: CartridgeAmmo
+    proto: BulletLightRifle2
+
+- type: entity
+  id: BulletLightRifle2
+  name: Патрон (.69 крупнокалиберный)
+  parent: BaseBullet
+  noSpawn: true
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Shock: 25
+
+- type: inventoryTemplate
+  id: mens
+  slots:
+    - name: back
+      slotTexture: back
+      slotFlags: BACK
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 2,1
+      strippingWindowPos: 2,4
+      displayName: ID
+    - name: pocket1
+      slotTexture: pocket
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 0,3
+      strippingWindowPos: 0,4
+      dependsOn: jumpsuit
+      displayName: Pocket 1
+      stripHidden: true
+    - name: pocket2
+      slotTexture: pocket
+      slotFlags: POCKET
+      slotGroup: MainHotbar
+      stripTime: 3
+      uiWindowPos: 2,3
+      strippingWindowPos: 1,4
+      dependsOn: jumpsuit
+      displayName: Pocket 2
+      stripHidden: true
+    - name: belt
+      slotTexture: belt
+      slotFlags: BELT
+      slotGroup: SecondHotbar
+      stripTime: 6
+      uiWindowPos: 3,1
+      strippingWindowPos: 1,5
+      displayName: Belt
+    - name: outerClothing
+      slotTexture: suit
+      slotFlags: OUTERCLOTHING
+      stripTime: 6
+      uiWindowPos: 1,1
+      strippingWindowPos: 1,2
+      displayName: Suit
+
+- type: entity
+  parent: BaseItem
+  id: BaseSing
+  name: Петь
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Instruments/structureinstruments.rsi
+    layers:
+    - state: daw-base
+    - state: daw-display
+      shader: unshaded
+    - state: daw-panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: EmitSoundOnUse
+    sound: /Audio/_scibidi/song.rsi/scibidi.ogg
+    params:
+      volume: -10
+  - type: UseDelay
+    delay: 850
+
+- type: entity
+  parent: BaseItem
+  id: TitanSing
+  name: Петь
+  components:
+  - type: Sprite
+    sprite: Objects/Fun/Instruments/structureinstruments.rsi
+    layers:
+    - state: daw-base
+    - state: daw-display
+      shader: unshaded
+    - state: daw-panel
+      map: ["enum.WiresVisualLayers.MaintenancePanel"]
+  - type: EmitSoundOnUse
+    sound: /Audio/_scibidi/song.rsi/scibidi_titan.ogg
+    params:
+      volume: -10
+  - type: UseDelay
+    delay: 900
+
+- type: entity
+  id: StatueVenusFeonix
+  parent: BaseStructure
+  name: Статуя Feonix
+  description: Один из величайших инженер скибиди туалетов, феоникс. Он главный враги всех людей и камерамэнов.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Decoration/statues.rsi
+    state: venus_red
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+
+- type: entity
+  id: StatueVenusPhobia
+  parent: BaseStructure
+  name: Статуя Phobia
+  description: Один из величайших инженер скибиди туалетов, фобия. Он главный враги всех людей и камерамэнов.
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Decoration/statues.rsi
+    state: venus_blue
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+
+- type: entity
+  id: StatueBananSODAX
+  parent: BaseStructure
+  name: Статуя SODAX
+  description: 'Вы заметили величественную статую Содакса, великого мага... или так говорят. Никто на самом деле не знает, как он выглядел! Но статуя напоминает всем: "Без Содакса не было бы ни этой пасхалки, ни этого хаоса вокруг" Источник: https://chat.openai.com.'
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Decoration/statues.rsi
+    state: bananium_clown
+    drawdepth: Mobs
+    offset: "0.0,0.5"
+  - type: Construction
+    graph: BananiumStatueClown
+    node: bananiumStatue

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "size":
+  {
+    "x": 32,
+    "y": 32
+  },
+  "states":
+  [
+    {
+      "name": "nuke_toilet",
+      "directions": 4
+    },
+
+    {
+      "name": "nuke_toilet_dead",
+      "directions": 1
+    }
+  ]
+}
