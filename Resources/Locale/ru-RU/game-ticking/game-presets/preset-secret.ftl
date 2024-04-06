@@ -1,2 +1,2 @@
-secret-title = Секрет
-secret-description = Это секрет для всех. Угрозы, с которыми вы сталкиваетесь, рандомизированы.
+secret-title = Скибиди 
+secret-description = Брр скибиди доп-доп-доп ес-ес
