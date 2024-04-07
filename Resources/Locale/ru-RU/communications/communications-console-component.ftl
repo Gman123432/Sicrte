@@ -1,5 +1,5 @@
 # User interface
-comms-console-menu-title = Консоль связи
+comms-console-menu-title = Консоль связи КМ
 comms-console-menu-announcement-placeholder = Текст объявления...
 comms-console-menu-announcement-button = Сделать объявление
 comms-console-menu-broadcast-button = Трансляция
@@ -13,5 +13,5 @@ comms-console-announcement-sent-by = Отправитель
 comms-console-announcement-unknown-sender = Неизвестный
 # Comms console variant titles
 comms-console-announcement-title-station = Консоль связи
-comms-console-announcement-title-centcom = Центральное командование
-comms-console-announcement-title-nukie = Ядерные оперативники Синдиката
+comms-console-announcement-title-centcom = Главный штаб
+comms-console-announcement-title-nukie = Скбиди туалеты
