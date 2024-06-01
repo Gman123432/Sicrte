@@ -1,0 +1,83 @@
+- type: entity
+  name: Спавнер Скибиди оперативник
+  id: NukeToiletspawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/mecha.rsi
+        state: honker
+  - type: ConditionalSpawner
+    prototypes:
+      - NukeToilet
+
+- type: entity
+  name: Спавнер Скибиди туалет
+  id: SpawnBaseToilet
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/mecha.rsi
+        state: honker
+  - type: ConditionalSpawner
+    prototypes:
+      - BaseToilet   
+
+- type: entity
+  name: Спавнер Скибиди Инженер
+  id: EngToiletspawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/mecha.rsi
+        state: honker
+  - type: ConditionalSpawner
+    prototypes:
+      - EngToilet   
+
+- type: entity
+  name: Спавнер Скибиди Титан
+  id: SpawnTitanToilet
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/mecha.rsi
+        state: honker
+  - type: ConditionalSpawner
+    prototypes:
+      - TitanToilet  
+
+- type: entity
+  name: Спавнер Камерамэн
+  id: SpawnCameraman
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/mecha.rsi
+        state: honker
+  - type: ConditionalSpawner
+    prototypes:
+      - Cameraman  
+
+- type: entity
+  name: Спавнер ТВмэн
+  id: SpawnTvman
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    layers:
+      - state: green
+      - sprite: Objects/Specific/Mech/mecha.rsi
+        state: honker
+  - type: ConditionalSpawner
+    prototypes:
+      - Tvman               
