@@ -163,16 +163,16 @@
 # example: EXP-100c "Poppy"
 
 - type: entity
-  id: ShuttleGunFriendship
+  id: ShuttleGunHowitzer
   parent: [ShuttleGunBase, ConstructibleMachine]
-  name: EXP-320g "Friendship"
-  description: A small stationary grenade launcher that holds 2 grenades.
+  name: 4,2 cm PaK 41
+  description: 4,2 cm Pak 41 (нем. 4,2 cm Panzerjägerkanone 41 — 4,2-см противотанковая пушка 41) — немецкая лёгкая 42-мм противотанковая пушка с коническим каналом ствола периода Второй мировой войны.
   components:
   - type: Sprite
     sprite: Objects/Weapons/Guns/Shuttles/launcher.rsi
     layers:
-    - state: exp-320g
-    - state: mag-7
+    - state: Howitzer
+    - state: mag-1
       map: ["enum.GunVisualLayers.Mag"]
   - type: ContainerContainer
     containers:
@@ -183,7 +183,7 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 200
+        damage: 500
       behaviors:
         - !type:ChangeConstructionNodeBehavior
           node: machineFrame
@@ -191,12 +191,12 @@
           acts: ["Destruction"]
   - type: Gun
     projectileSpeed: 80
-    fireRate: 1
+    fireRate: 0.1
     angleDecay: 45
     minAngle: 0
     maxAngle: 15
     soundGunshot:
-      path: /Audio/Weapons/Guns/Gunshots/ship_friendship.ogg
+      path: /Audio/Weapons/Guns/Gunshots/howitzer_fire.ogg
       params:
         pitch: 0.8
     soundEmpty:
@@ -205,9 +205,10 @@
     whitelist:
       tags:
         - Grenade
-    capacity: 2
+        - CannonBall
+    capacity: 1
     soundInsert:
-      path: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+      path: /Audio/Weapons/Guns/MagIn/9f6fb13802cc1d1.ogg
   - type: Machine
     board: ShuttleGunFriendshipCircuitboard
   - type: MagazineVisuals

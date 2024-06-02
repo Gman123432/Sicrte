@@ -8,7 +8,8 @@
     },
     "states": [
     {
-        "name": "exp-320g"
+        "name": "Howitzer",
+        "directions": 4
     },
     {
         "name": "exp-2100g"
